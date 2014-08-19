@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en" >
+<head>
+	<meta charset="UTF-8">
+	<title>Starmie | AngularJS</title>
+
+	<!-- CSS -->
+	<link rel="stylesheet" href="css/app.css" >
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+</head>
+<body ng-app="mygithub" ng-controller="GitHubController" >
+
+	<div class="header-avatar">
+		<a class="avatar-link" href="https://github.com/emalherbi"></a>
+	</div>
+
+	<div class="bar">
+		<h2>MyGitHub</h2>
+		<input type="text" ng-model="searchGitHub" placeholder="Search project..." >
+		<a href="#" class="repos" ng-class="{ active : layout == 'repos' }" ng-click="layout = 'repos'; all();" ></a>
+		<a href="#" class="starred" ng-class="{ active : layout == 'starred' }" ng-click="layout = 'starred'; all();" ></a>
+	</div>
+
+	<!-- GITHUB -->
+	<div class="content" >
+		<div class="github-box" ng-repeat="o in github | searchFor : searchGitHub " >
+			<div class="github-box-header">
+				<h3><a href="https://github.com/{{ o.owner.login }}/{{ o.name }}" target="_blank" >{{ o.name | truncate : 20 }}</a></h3>
+				<div class="github-stats">
+					<a class="repo-watchers" target="_blank" href="https://github.com/{{ o.owner.login }}/{{ o.name }}/watchers">{{ o.watchers }}</a>
+					<a class="repo-forks" target="_blank" href="https://github.com/{{ o.owner.login }}/{{ o.name }}/forks">{{ o.forks }}</a>
+				</div>
+			</div>
+			<div class="github-box-content">
+				<p><span>{{ o.language || 'Others' }}</span> - {{ o.description | truncate : 80 }} — <a target="_blank" href="https://github.com/{{ o.owner.login }}/{{ o.name }}#readme">Read More</a></p>
+			</div>
+			<div class="github-box-download">
+				<p class="repo-update">Latest commit: <strong>{{ o.updated_at | date:'yyyy-MM-dd HH:mm:ss' }}</strong></p>
+				<a class="repo-download" href="https://github.com/{{ o.owner.login }}/{{ o.name }}/zipball/master">Download as zip</a>
+			</div>
+		</div>
+	</div>
+
+	<!-- ANGULAR JS -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular-resource.min.js"></script>
+
+	<!-- APP -->
+	<script src="js/app.js"></script>
+</body>
+</html>
