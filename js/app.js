@@ -1,8 +1,10 @@
 var user = 'emalherbi',
-  params = [],
-  page = 1;
+  gravatar = 'http://www.gravatar.com/avatar/b4b2e05c730f60dd7ad3acb964bed758.png?size=100px';
 
-var app = angular.module ("mygithub", ['ngResource', 'filters']);
+var params = [],
+  page = 1,
+  app = angular.module ("mygithub", ['ngResource', 'filters']);
+
 app.factory('github', function($resource) {
 	return {
 		projects : function(func, callback) {
@@ -14,7 +16,10 @@ app.factory('github', function($resource) {
 				fetch : { method : 'JSONP' }
 			});
 
-			api.fetch(function (response) {
+      document.getElementById('progress').style.display = 'block';
+      api.fetch(function (response) {
+        document.getElementById('progress').style.display = 'none';
+
         if ( response.meta.status == '403' ) {
           alert( response.data.message );
           return false;
@@ -81,13 +86,15 @@ function GitHubController($scope, github) {
 	$scope.layout = 'repos';
 	$scope.github = [];
 
-  github.gravatar(function(response) {
-    document.getElementsByClassName("avatar-link")[0].style.backgroundImage = 'url("http://www.gravatar.com/avatar/'+ response.gravatar_id +'")';
-    document.getElementsByClassName("avatar-link")[0].href = response.html_url;
-  });
+  $scope.gravatar = function () {
+    github.gravatar(function(response) {
+      document.getElementsByClassName("avatar-link")[0].style.backgroundImage = 'url("' + gravatar + '")';
+      document.getElementsByClassName("avatar-link")[0].href = response.html_url;
+    });
+  }
 
 	$scope.all = function () {
-		github.projects($scope.layout, function(response) {
+    github.projects($scope.layout, function(response) {
 			params = params.concat( response );
 
 			if ( response.length < 30 ) {
@@ -104,4 +111,5 @@ function GitHubController($scope, github) {
 	}
 
 	$scope.all();
+  $scope.gravatar();
 }
