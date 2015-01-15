@@ -3,6 +3,8 @@
 
 Show GitHub Starred & Repos.
 
+<img src="https://raw.githubusercontent.com/emalherbi/starmie-angularjs/master/app/img/starmie.png">
+
 ## Usage
 
 If you liked, fork this project and change the user name and gravatar url.
