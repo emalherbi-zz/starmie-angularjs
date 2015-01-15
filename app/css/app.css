@@ -56,9 +56,9 @@ input {
 		box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5) inset, 0 0 2px 1px rgba(0, 0, 0, 0.05) inset;
 		display: block;
 }
-.header-avatar a {
+/*.header-avatar a {
 	background-image: url("http://www.gravatar.com/avatar/b4b2e05c730f60dd7ad3acb964bed758");
-}
+}*/
 
 /*--------------------------
 	MENU

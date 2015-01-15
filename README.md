@@ -1,16 +1,15 @@
 [Starmie](http://emalherbi.github.io/starmie-angularjs/)
 =======
 
-My GitHub Starred & Repos.
+Show GitHub Starred & Repos.
 
 ## Usage
 
-If you liked, fork this project and change the user name.
+If you liked, fork this project and change the user name and gravatar url.
 
 ```javascript
 var user = 'emalherbi',
-  params = [],
-  page = 1;
+  gravatar = 'http://www.gravatar.com/avatar/b4b2e05c730f60dd7ad3acb964bed758.png?size=100px';
 ```
 
 ## Contributing
